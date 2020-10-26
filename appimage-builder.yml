@@ -6,6 +6,7 @@ script:
   - mkdir -p AppDir/usr/src
   - mkdir -p AppDir/usr/local/lib/x86_64-linux-gnu
   - mkdir -p AppDir/usr/share/{metainfo,icons}
+  - mkdir -p AppDir/etc
   # Copy the python application code into the AppDir
   - cp appimage-reqs.sh scan lib tools_config AppDir/usr/src -r
   - cp tools_config/scan.png AppDir/usr/share/icons/
@@ -17,6 +18,7 @@ script:
   - npm install --only=production --no-save --prefix AppDir/usr/local/lib yarn @appthreat/cdxgen @microsoft/rush
   - mkdir -p AppDir/opt/phpsast && cd AppDir/opt/phpsast && composer init --quiet && composer require --quiet --no-cache --dev vimeo/psalm
   - cd AppDir/opt/phpsast && composer require --quiet --no-cache --dev phpstan/phpstan
+  - echo "" > AppDir/etc/ld.so.preload
 
 AppDir:
   path: ./AppDir
